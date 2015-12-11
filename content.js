@@ -24,9 +24,12 @@
                 localStorage.pr_monitor_content = new_content;
             }
 
-            var shouldUpdate = (field.text() !== localStorage.pr_monitor_changed && field.text() === orig_content)
+            var shouldUpdate = (
+                !field.is(":focus") &&
+                    field.val() === orig_content
+            )
 
-            if(!field.is(":focus") && shouldUpdate){
+            if(shouldUpdate){
                 field.val(localStorage.pr_monitor_content);
             }
 
