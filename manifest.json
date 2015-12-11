@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "AA Pull Request Monitor",
+    "version": "0.1",
+    "content_scripts": [
+        {
+            "matches": ["https://github.com/appannie/*/pull/*"],
+            "js": ["jquery-2.1.4.min.js", "content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "permissions": [
+        "storage"
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    }
+}
