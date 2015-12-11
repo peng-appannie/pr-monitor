@@ -17,12 +17,19 @@
         chrome.runtime.sendMessage({from: 'content', subject: 'localStorage'}, function(response){
             if (!response) { return; }
 
+
             var localStorage = response.localStorage;
 
             if(localStorage && !localStorage.pr_monitor_content){
                 localStorage.pr_monitor_content = new_content;
             }
-            field.val(localStorage.pr_monitor_content);
+
+            var shouldUpdate = (field.text() !== localStorage.pr_monitor_changed && field.text() === orig_content)
+
+            if(!field.is(":focus") && shouldUpdate){
+                field.val(localStorage.pr_monitor_content);
+            }
+
         });
     };
     merge_message();
